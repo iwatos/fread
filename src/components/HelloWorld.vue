@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h1>{{ info.data.status }}</h1>
+    <!-- <h1>{{ info.data.status }}</h1> -->
   </div>
 </template>
 
@@ -18,7 +18,9 @@ export default {
     }
   },
   mounted () {
-    axios.get('https://fread-api.herokuapp.com/users').then(response => (this.info = response))
+    console.log("BASE_API: " + process.env.VUE_APP_BASE_API)
+    //axios.get(process.env.VUE_APP_API_URL_BASE+'users').then(response => (this.info = response))
+    //this.apiUrl = process.env.VUE_APP_API_URL_BASE
   }
 }
 </script>
