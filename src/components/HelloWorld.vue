@@ -18,8 +18,6 @@ export default {
     }
   },
   beforeCreate () {
-    console.log("BASE_API: " + process.env.VUE_APP_BASE_API)
-    console.log("FREAD_TOKEN: " + process.env.VUE_APP_FREAD_TOKEN)
     axios
       .get(process.env.VUE_APP_BASE_API + "users",{
         headers : { "Authorization": "Token " + process.env.VUE_APP_FREAD_TOKEN }
