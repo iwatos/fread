@@ -1,45 +1,30 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h1>{{ info.data }}</h1>
-  </div>
+  <v-container grid-list-md text-xs-center>
+    <Tab/>
+    <p>{{ info }}</p>
+  </v-container>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
+import Tab from "./Tab";
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
+  name: "HelloWorld",
+  components: {
+    Tab
   },
-  data() {
-    return {
-      info: ""
-    }
-  },
-  beforeCreate () {
+  data: () => ({
+    info: ""
+  }),
+  mounted() {
     axios
-      .get(process.env.VUE_APP_BASE_API + "users",{
-        headers : { "Authorization": "Token " + process.env.VUE_APP_FREAD_TOKEN }
-        }).then(response => (this.info = response))
+      .get(process.env.VUE_APP_BASE_API + "get_feed", {
+        headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN }
+      })
+      .then(response => (this.info = response));
   }
-}
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this csomponent only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style>
 </style>
