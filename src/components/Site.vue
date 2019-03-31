@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import freadApi from "../freadApi"
 import axios from "axios";
 export default {
   props: {
@@ -27,18 +28,13 @@ export default {
     items: null
   }),
   methods: {
-    getFeed: async function(feedUrl) {
-      let url = process.env.VUE_APP_BASE_API + "get_feed?url=" + feedUrl;
-      await axios
-        .get(url, {
-          headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN }
-        })
-        .then(response => (this.feed = response.data))
-        .catch(console.log("error occured in API"));
+    setInfo: function(feed){
+      this.feed = feed.data
     }
   },
   mounted() {
-    this.getFeed(this.feedUrl);
+    let url = "get_feed?url=" + this.feedUrl
+    freadApi.callFreadApi(url,this.setInfo)
   }
 };
 </script>
