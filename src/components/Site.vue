@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-toolbar color="grey darken-3" dark>
-      <v-toolbar-title>{{ feedSite.data.title }}</v-toolbar-title>
+      <v-toolbar-title>{{ feed.title }}</v-toolbar-title>
     </v-toolbar>
     <v-list>
-      <v-list-tile v-for="(item, index) in items" :key="index">
-        <a href>
+      <v-list-tile v-for="(entry, index) in feed.entries" :key="index">
+        <a :href="entry[1][1]" target="_blank">
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+            <v-list-tile-title v-text="entry[0][1]"></v-list-tile-title>
           </v-list-tile-content>
         </a>
       </v-list-tile>
@@ -23,17 +23,22 @@ export default {
     itemNum: Number
   },
   data: () => ({
-    feedSite: null,
-    items: []
+    feed: null,
+    items: null
   }),
+  methods: {
+    getFeed: async function(feedUrl) {
+      let url = process.env.VUE_APP_BASE_API + "get_feed?url=" + feedUrl;
+      await axios
+        .get(url, {
+          headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN }
+        })
+        .then(response => (this.feed = response.data))
+        .catch(console.log("error occured in API"));
+    }
+  },
   mounted() {
-    /*
-    let url = process.env.VUE_APP_BASE_API + "get_feed?url=" + this.feedUrl
-    axios.get(url, {
-        headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN }
-      })
-      .then(response => (this.feedSite = response));
-      */
+    this.getFeed(this.feedUrl);
   }
 };
 </script>

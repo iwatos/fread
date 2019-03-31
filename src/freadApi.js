@@ -10,6 +10,7 @@ export default {
           })
           .then(response => (info = response.data))
           .catch(console.log("error occured in API"))
+          console.log(info)
     }
 
 }

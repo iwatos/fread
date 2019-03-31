@@ -5,8 +5,8 @@
         <v-tab v-for="(tab, index) in tabs" :key="index" ripple>{{ tab.name }}</v-tab>
         <v-tab-item v-for="(tab, index) in tabs" :key="index">
           <v-layout row wrap>
-            <v-flex row v-for="(url, index) in urls" :key="index" xs4>
-             <Site :feedUrl="url"></Site>
+            <v-flex row v-for="(url, index) in tab.urls" :key="index" xs12>
+              <Site :feedUrl="url"></Site>
             </v-flex>
           </v-layout>
         </v-tab-item>
@@ -24,15 +24,14 @@ export default {
   },
   data: () => ({
     tabs: [
-      { name: "おもしろ" },
-      { name: "技術" },
-      { name: "エンタメ" },
-      { name: "スポーツ" }
-    ],
-    urls: [
-      "http://feeds.lifehacker.jp/rss/lifehacker/index.xml",
-      "http://gigazine.net/news/rss_2.0/",
-      "http://feed.rssad.jp/rss/engadget/rss"
+      {
+        name: "おもしろ",
+        urls: ["http://gigazine.net/news/rss_2.0/"]
+      },
+      {
+        name: "技術",
+        urls: ["http://feeds.lifehacker.jp/rss/lifehacker/index.xml"]
+      }
     ]
   })
 };
