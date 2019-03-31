@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container grid-list-md>
     <Tab/>
     {{ info }}
   </v-container>
@@ -22,11 +22,13 @@ export default {
   methods: {
     setInfo: function(info){
       this.info = info
+    },
+    callApi: function(url){
+      freadApi.callFreadApi(url,this.setInfo)
     }
   },
   mounted() {
-    let url = "get_feed?url=http://gigazine.net/news/rss_2.0/"
-    freadApi.callFreadApi(url,this.setInfo)
+    //this.callApi("get_feed?url=http://gigazine.net/news/rss_2.0/")
   }
 };
 </script>
