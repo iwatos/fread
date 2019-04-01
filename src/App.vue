@@ -1,24 +1,16 @@
 <template>
   <v-app>
     <v-toolbar app >
-      <v-toolbar-title class="headline text-uppercase">
-        <span>fread!</span>
-        <span class="font-weight-light">~自由に作れるまとめ~</span>
+      <v-toolbar-title >
+        <router-link class="headline text-uppercase" to="/">Fread~自由に作るまとめ~</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat href=" ">
-        <span class="mr-2">fread!とは?</span>
-      </v-btn>
-      <v-btn flat href=" ">
-        <span class="mr-2">新規登録</span>
-      </v-btn>
-      <v-btn flat href=" ">
-        <span class="mr-2">ログイン</span>
-      </v-btn>
+      <v-btn flat to="/about">"fread!とは?</v-btn>
+      <v-btn flat to="/signup">新規登録</v-btn>
+      <v-btn flat to="/login">ログイン</v-btn>
     </v-toolbar>
-
     <v-content>
-      <HelloWorld/>
+      <router-view/>
     </v-content>
   </v-app>
 </template>
