@@ -1,6 +1,5 @@
 <template>
   <v-container grid-list-md>
-    <p>{{ info }}</p>
     <p>ログイン</p>
     <form @submit.prevent="login">
       <v-flex xs6>
@@ -24,6 +23,7 @@
       </v-flex>
       <v-btn type="submit">ログイン</v-btn>
     </form>
+    <p>{{ info }}</p>
   </v-container>
 </template>
 
@@ -34,24 +34,26 @@ export default {
   name: "Login",
   data() {
     return {
-      info: ""
+      info: "",
+      count: 0
     };
   },
   methods: {
-    callApi: function(url) {
-      freadApi.callFreadApi(url, this.setInfo);
-    },
     login: function() {
-      let url = process.env.VUE_APP_BASE_API + "/login";
-      
       const params = new URLSearchParams();
       params.append("email", this.email);
       params.append("password", this.password);
+      freadApi.postFreadApi("/login",params,this.renderToUserPage)
+    },
 
-      axios
-        .post(url, params,{headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN }})
-        .then(response => { this.info = response.data })
-        .catch(error => { console.log(error) });
+    renderToUserPage: function(str) {
+      console.log(str)
+      if(str.data[0] == "LoginSuccess"){
+        this.$router.push("/user/" + str.data[1])
+      }
+      else{
+        this.info = "Login failed"
+      }
     }
   }
 };

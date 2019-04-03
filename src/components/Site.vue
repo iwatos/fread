@@ -30,7 +30,7 @@ export default {
   },
   mounted() {
     let url = "get_feed?url=" + this.feedUrl;
-    freadApi.callFreadApi(url, this.setInfo);
+    freadApi.getFreadApi(url, this.setInfo);
   }
 };
 </script>
