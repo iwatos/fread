@@ -3,9 +3,9 @@
     <v-toolbar color="grey darken-3" dark>
       <v-toolbar-title>{{ feed.title }}</v-toolbar-title>
     </v-toolbar>
-    <v-flex v-for="(entry, index) in feed.entries" :key="index">
-      <v-card :href="entry[1][1]" target="_blank" height="3.5em">
-        <div class="test">{{ entry[0][1] }}</div>
+    <v-flex v-for="(index) in 5" :key="index">
+      <v-card :href="feed.entries[index][2][1]" target="_blank" height="3.5em">
+        <div class="test">{{ feed.entries[index][0][1] }}</div>
       </v-card>
     </v-flex>
   </v-card>

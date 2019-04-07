@@ -23,8 +23,6 @@
       </v-flex>
       <v-btn type="submit">ログイン</v-btn>
     </form>
-    <p>{{ info }}</p>
-    <p>{{ cookies }}</p>
   </v-container>
 </template>
 
@@ -46,15 +44,20 @@ export default {
       const params = new URLSearchParams();
       params.append("email", this.email);
       params.append("password", this.password);
-      freadApi.postFreadApi("/login",params,this.setInfo)
+      freadApi.postFreadApi("user/get_feed",params,this.setInfo)
+      //freadApi.postFreadApi("/login",params,this.setInfo)
       //freadApi.postFreadApi("/login",params,this.renderToUserPage)
     },
+
+
     setInfo: function (info) {
       this.info = info.data
+      /*
       let key = String(this.info[1])
       let value = String(this.info[2])
       Cookies.set(key,value,{ expires: 7 });
       this.cookies = Cookies.get(key)
+      */
     },
 
     renderToUserPage: function(str) {
