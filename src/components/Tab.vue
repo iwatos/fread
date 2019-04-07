@@ -33,7 +33,10 @@ export default {
       },
       {
         name: "技術",
-        urls: ["http://feeds.lifehacker.jp/rss/lifehacker/index.xml"]
+        urls: [
+          "http://feeds.lifehacker.jp/rss/lifehacker/index.xml",
+          "http://littlebigdetails.com/rss"
+          ]
       }
     ]
   })

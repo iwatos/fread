@@ -24,18 +24,21 @@
       <v-btn type="submit">ログイン</v-btn>
     </form>
     <p>{{ info }}</p>
+    <p>{{ cookies }}</p>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import Cookies from 'js-cookie';
 import freadApi from "../freadApi";
 export default {
   name: "Login",
   data() {
     return {
-      info: "",
-      count: 0
+      info: "info",
+      count: "",
+      cookies: "cookies"
     };
   },
   methods: {
@@ -43,7 +46,15 @@ export default {
       const params = new URLSearchParams();
       params.append("email", this.email);
       params.append("password", this.password);
-      freadApi.postFreadApi("/login",params,this.renderToUserPage)
+      freadApi.postFreadApi("/login",params,this.setInfo)
+      //freadApi.postFreadApi("/login",params,this.renderToUserPage)
+    },
+    setInfo: function (info) {
+      this.info = info.data
+      let key = String(this.info[1])
+      let value = String(this.info[2])
+      Cookies.set(key,value,{ expires: 7 });
+      this.cookies = Cookies.get(key)
     },
 
     renderToUserPage: function(str) {
