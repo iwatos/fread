@@ -15,6 +15,7 @@ function postApi(url, params, callback) {
 }
 
 function getFreadApi(url, callback) {
+  console.log(process.env.VUE_APP_BASE_API)
   let apiUrl = process.env.VUE_APP_BASE_API + url;
   getApi(apiUrl, callback)
 }
