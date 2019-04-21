@@ -6,8 +6,14 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat to="/about">"fread!とは?</v-btn>
-      <v-btn flat to="/signup">新規登録</v-btn>
-      <v-btn flat to="/login">ログイン</v-btn>
+      <div v-if="auth.userName==null">
+        <v-btn flat to="/signup">新規登録</v-btn>
+        <v-btn flat to="/login">ログイン</v-btn>
+      </div>
+      <div v-else>
+        <v-btn flat >{{ auth.userName }}</v-btn>
+        <v-btn flat @click="logout">ログアウト</v-btn>
+      </div>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -24,10 +30,19 @@ export default {
     HelloWorld
   },
   data () {
-    return {
-      //
+    return {}
+  },
+  methods: {
+    logout(){
+      this.$store.dispatch('destroy')
+      this.$router.push({ path: 'about' });
     }
-  }
+  },
+  computed: {
+    auth(){
+      return this.$store.getters.auth
+    }
+  },
 }
 </script>
 

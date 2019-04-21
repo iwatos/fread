@@ -29,14 +29,6 @@ export default {
     urls: ""
   }),
   methods: {
-    getFeed: function() {
-      const params = new URLSearchParams();
-      freadApi.postFreadApi("user/get_feed", params, this.setTabs);
-    },
-    setTabs: function(info) {
-      this.tabs = info.data[0];
-      this.urls = info.data[1];
-    },
     setSample: function() {
       this.tabs = ["おもしろ", "まとめブログ", "技術"];
       this.urls = [
@@ -65,12 +57,21 @@ export default {
           "https://postd.cc/feed/"
         ]
       ];
+    },
+    setFeed: function() {
+      this.tabs = this.feed[0];
+      this.urls = this.feed[1];
     }
   },
   mounted() {
-    //this.getFeed()
-    this.setSample()
-  }
+    //this.setSample()
+    this.setFeed()
+  },
+  computed: {
+    feed() {
+      return this.$store.getters.feed;
+    }
+  },
 };
 </script>
 

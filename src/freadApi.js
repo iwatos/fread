@@ -1,21 +1,26 @@
 import axios from "axios"
 
+let option = {
+  headers: {
+    Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN
+  }
+}
+
 function getApi(url, callback) {
   axios
-    .get(url, { headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN } })
+    .get(url, option)
     .then(response => { callback(response) })
-    .catch(e => { console.log("Error occurred in API ¥n" + e) });
+    .catch(e => { console.log("[Error occurred in API] \n" + e) });
 }
 
 function postApi(url, params, callback) {
   axios
-    .post(url, params, { headers: { Authorization: "Token " + process.env.VUE_APP_FREAD_TOKEN } })
+    .post(url, params, option)
     .then(response => { callback(response) })
-    .catch(e => { console.log("Error occurred in API ¥n" + e) });
+    .catch(e => { console.log("[Error occurred in API] \n" + e) });
 }
 
 function getFreadApi(url, callback) {
-  console.log(process.env.VUE_APP_BASE_API)
   let apiUrl = process.env.VUE_APP_BASE_API + url;
   getApi(apiUrl, callback)
 }

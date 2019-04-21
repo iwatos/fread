@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar color="grey darken-3" dark>
-      <v-toolbar-title>{{ feed.title }}</v-toolbar-title>
+      <v-toolbar-title><a target="_blank" >{{ feed.title }}</a></v-toolbar-title>
     </v-toolbar>
     <v-flex v-for="(index) in 5" :key="index">
       <v-card :href="feed.entries[index][2][1]" target="_blank" height="3.5em">
@@ -40,8 +40,7 @@ div.test {
   font-size: 1em;
   overflow: hidden;
   display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
- 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 </style>
