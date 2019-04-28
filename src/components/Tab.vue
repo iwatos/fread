@@ -5,7 +5,7 @@
         <v-tab v-for="(tab, index) in tabs" :key="index" ripple>{{ tab }}</v-tab>
         <v-tab-item v-for="(tab, tab_index) in tabs" :key="tab_index">
           <v-layout row wrap>
-            <v-flex row v-for="(url, url_index) in urls[tab_index]" :key="url_index" xs4>
+            <v-flex row v-for="(url, url_index) in urls[tab_index]" :key="url_index" xs6>
               <Site :feedUrl="url"></Site>
             </v-flex>
           </v-layout>
@@ -30,7 +30,7 @@ export default {
   }),
   methods: {
     setSample: function() {
-      this.tabs = ["おもしろ", "まとめブログ", "技術"];
+      this.tabs = ["おもしろ", "まとめブログ", "IT"];
       this.urls = [
         [
           "http://feeds.lifehacker.jp/rss/lifehacker/index.xml",
@@ -64,12 +64,19 @@ export default {
     }
   },
   mounted() {
-    //this.setSample()
-    this.setFeed()
+    if(this.auth.token == null){
+      this.setSample() 
+    }
+    else{
+      this.setFeed()
+    }
   },
   computed: {
     feed() {
       return this.$store.getters.feed;
+    },
+    auth() {
+      return this.$store.getters.auth;
     }
   },
 };

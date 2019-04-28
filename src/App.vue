@@ -2,18 +2,16 @@
   <v-app>
     <v-toolbar app >
       <v-toolbar-title >
-        <router-link class="headline" to="/">Fread~自由に作るまとめ~</router-link>
+        <router-link class="headline" to="/">Fread</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat to="/about">"fread!とは?</v-btn>
-      <div v-if="auth.userName==null">
-        <v-btn flat to="/signup">新規登録</v-btn>
-        <v-btn flat to="/login">ログイン</v-btn>
-      </div>
-      <div v-else>
-        <v-btn flat >{{ auth.userName }}</v-btn>
-        <v-btn flat @click="logout">ログアウト</v-btn>
-      </div>
+    <v-toolbar-items >
+      <v-btn flat to="/about">Freadとは?</v-btn>
+      <v-btn v-if="auth.userName==null" flat to="/signup">新規登録</v-btn>
+      <v-btn v-if="auth.userName==null" flat to="/login">ログイン</v-btn>
+      <v-btn v-if="auth.userName!=null" flat to="/mypage">{{ auth.userName }}</v-btn>
+      <v-btn v-if="auth.userName!=null" flat @click="logout">ログアウト</v-btn>
+    </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view/>
@@ -35,7 +33,7 @@ export default {
   methods: {
     logout(){
       this.$store.dispatch('destroy')
-      this.$router.push({ path: 'about' });
+      this.$router.push({ path: '/login' });
     }
   },
   computed: {

@@ -1,8 +1,13 @@
 <template>
   <v-container grid-list-md>
-    <p>ログイン</p>
-    <form @submit.prevent="login">
+    <p>新規登録</p>
+    <form @submit.prevent="signup">
       <v-flex xs6>
+        <v-text-field
+          v-model="name"
+          label="name"
+          required
+        ></v-text-field>
         <v-text-field
           v-model="email"
           label="email"
@@ -15,7 +20,7 @@
           required
         ></v-text-field>
       </v-flex>
-      <v-btn type="submit">ログイン</v-btn>
+      <v-btn type="submit">新規登録</v-btn>
     </form>
   </v-container>
 </template>
@@ -25,20 +30,21 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import freadApi from "../freadApi";
 export default {
-  name: "Login",
+  name: "Signup",
   data() {
     return {
-      info: "info",
+      name: "",
       email: "",
       password: ""
     };
   },
   methods: {
-    login() {
+    signup() {
       const params = new URLSearchParams();
+      params.append("name", this.name);
       params.append("email", this.email);
       params.append("password", this.password);
-      freadApi.postFreadApi("/login",params,this.setInfo)
+      freadApi.postFreadApi("/signup",params,this.setInfo)
     },
     setInfo(info) {
       console.log(info.data)
@@ -46,7 +52,7 @@ export default {
         let data = {userName:info.data[1], token:info.data[2]}
         this.$store.dispatch('create', data)
         this.getFeed()
-        this.$router.push("/")
+        //this.$router.push("/")
       } else {
         console.log("Login failed")
       }

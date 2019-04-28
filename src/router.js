@@ -23,6 +23,9 @@ const router =  new Router({
       name: 'about',
       component: function () {
         return import('./views/About.vue')
+      },
+      meta: {
+        isPublic: true
       }
     },
     {
@@ -34,6 +37,23 @@ const router =  new Router({
       meta: {
         isPublic: true
       }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: function () {
+        return import('./views/Signup.vue')
+      },
+      meta: {
+        isPublic: true
+      }
+    },
+    {
+      path: '/mypage',
+      name: 'mypage',
+      component: function () {
+        return import('./views/MyPage.vue')
+      },
     },
   ],
 })

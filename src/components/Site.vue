@@ -1,10 +1,12 @@
 <template>
   <v-card>
-    <v-toolbar color="grey darken-3" dark>
-      <v-toolbar-title><a target="_blank" >{{ feed.title }}</a></v-toolbar-title>
-    </v-toolbar>
+    <v-card :href="feed.url" target="_blank">
+      <v-toolbar color="grey darken-3" dark>
+        <v-toolbar-title >{{ feed.title }}</v-toolbar-title>
+      </v-toolbar>
+    </v-card>
     <v-flex v-for="(index) in 5" :key="index">
-      <v-card :href="feed.entries[index][2][1]" target="_blank" height="3.5em">
+      <v-card :href="feed.entries[index][3][1]" target="_blank" height="3.5em">
         <div class="test">{{ feed.entries[index][0][1] }}</div>
       </v-card>
     </v-flex>
@@ -25,14 +27,14 @@ export default {
   }),
   methods: {
     setInfo: function(feed) {
-      this.feed = feed.data;
+      this.feed = feed.data
     }
   },
   mounted() {
-    let url = "get_feed?url=" + this.feedUrl;
-    freadApi.getFreadApi(url, this.setInfo);
+    let url = "get_feed?url=" + this.feedUrl
+    freadApi.getFreadApi(url, this.setInfo)
   }
-};
+}
 </script>
 
 <style>
