@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>現在実装中のため編集内容は反映されません</h1>
+    <p>{{ userFeeds }}</p>
       <!-- テーブルヘッダー表示　-->
       <v-toolbar flat color="white">
         <v-toolbar-title>Your Feeds</v-toolbar-title>
@@ -120,6 +121,9 @@ export default {
     },
     itemFormTitle() {
       return this.editedItemIndex === -1 ? "New Item" : "Edit Item";
+    },
+    userFeed() {
+      return this.$store.getters.feeds
     }
   },
 
@@ -229,7 +233,7 @@ export default {
           this.feeds[this.editedTagIndex].sites.push(this.editedItem);
         }
       this.itemDialogClose();
-    }
+    },
 
   },
   mounted() {

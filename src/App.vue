@@ -7,10 +7,12 @@
       <v-spacer></v-spacer>
     <v-toolbar-items >
       <v-btn flat to="/about">Freadとは?</v-btn>
+      <!--
       <v-btn v-if="auth.userName==null" flat to="/signup">新規登録</v-btn>
       <v-btn v-if="auth.userName==null" flat to="/login">ログイン</v-btn>
       <v-btn v-if="auth.userName!=null" flat to="/mypage">{{ auth.userName }}</v-btn>
       <v-btn v-if="auth.userName!=null" flat @click="logout">ログアウト</v-btn>
+      -->
     </v-toolbar-items>
     </v-toolbar>
     <v-content>
