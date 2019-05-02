@@ -18,8 +18,7 @@ import freadApi from "../freadApi";
 import axios from "axios";
 export default {
   props: {
-    feedUrl: String,
-    itemNum: Number
+    feedId: Number
   },
   data: () => ({
     feed: null,
@@ -31,7 +30,7 @@ export default {
     }
   },
   mounted() {
-    let url = "get_feed?url=" + this.feedUrl
+    let url = "get_feed?feed_id=" + this.feedId
     freadApi.getFreadApi(url, this.setInfo)
   }
 }
