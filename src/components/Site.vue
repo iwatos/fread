@@ -6,8 +6,8 @@
       </v-toolbar>
     </v-card>
     <v-flex v-for="(index) in 5" :key="index">
-      <v-card :href="feed.entries[index].url" target="_blank" height="3.5em">
-        <div class="test">{{ feed.entries[index].title }}</div>
+      <v-card :href="feed.entries[index-1].url" target="_blank" height="3.5em">
+        <div class="test">{{ feed.entries[index-1].title }}</div>
       </v-card>
     </v-flex>
   </v-card>
